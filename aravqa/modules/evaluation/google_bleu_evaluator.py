@@ -4,9 +4,10 @@ from .base import BaseEvaluator
 import evaluate
 
 class GoogleBLEUEvaluator(BaseEvaluator):
-    def __init__(self):
+    def __init__(self, max_len: int = 1):
         self.google_bleu_scorer = evaluate.load("google_bleu")
         super().__init__()
+        self.max_len = max_len
 
     def evaluate(self, predictions: List[str], references: List[List[str]]) -> Dict:
         """
@@ -51,7 +52,8 @@ class GoogleBLEUEvaluator(BaseEvaluator):
             raise ValueError("The number of predictions must match the number of reference sets.")
 
         try:
-            result = self.google_bleu_scorer.compute(predictions=predictions, references=references)
+            result = self.google_bleu_scorer.compute(predictions=predictions, references=references, max_len=self.max_len)
+            # TODO: Spacify tokenizer like result = self.google_bleu_scorer(predictions=predictions, references=references,tokenizer=..._tokenize, max_order=self.max_order)
             return result
         except Exception as e:
             print(f"Error computing Google BLEU score: {e}")

@@ -5,8 +5,9 @@ import evaluate
 
 class BERTScoreEvaluator(BaseEvaluator):
     def __init__(self, lang: str = "ar", model_type: str = "bert-base-multilingual-cased"):
-        # Another option: model_type: str = "distilbert-base-multilingual-cased"
-        self.bertscore_scorer = evaluate.load("bertscore", lang=lang, model_type=model_type)
+        # TODO: Spacify layer: if model_type: str = "bert-base-multilingual-cased" with num_layers=9
+        # TODO: Another model option: model_type: str = "distilbert-base-multilingual-cased" with num_layers=5
+        self.bertscore_scorer = evaluate.load("bertscore")
         super().__init__()
         self.lang = lang
         self.model_type = model_type
@@ -55,13 +56,15 @@ class BERTScoreEvaluator(BaseEvaluator):
         Returns:
             Dict: The computed evaluation score.  {"precision":float("-inf"),"recall":float('-inf'),"f1":float("-inf")} if computation fails.
         """
+        
         if not predictions or not references:
             raise ValueError("Predictions and references must not be empty.")
         if len(predictions) != len(references):
             raise ValueError("The number of predictions must match the number of reference sets.")
 
         try:
-            result = self.bertscore_scorer.compute(predictions=predictions, references=references)
+            result = self.bertscore_scorer.compute(predictions=predictions, references=references, lang=self.lang, model_type=self.model_type)
+            # TODO: Spacify layer: if model_type: str = "bert-base-multilingual-cased" with num_layers=9 if model_type: str = "distilbert-base-multilingual-cased" with num_layers=5
             return result
         except Exception as e:
             print(f"Error computing BERTScore score: {e}")

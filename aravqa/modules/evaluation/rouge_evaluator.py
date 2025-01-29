@@ -20,19 +20,21 @@ class ROUGEEvaluator(BaseEvaluator):
             Dict: The computed evaluation score.
         """
         results = {
-            "overall_rouge": {"rouge1":float('-inf'),"rouge2":float('-inf'),"rougeL":float('-inf')},
-            "rouge": []
+            "overall_rouge1": float('-inf'),
+            "overall_rouge2": float('-inf'),
+            "rouge1": [],
+            "rouge2": []
         }
 
         for pred, ref in tqdm(zip(predictions, references), total=len(predictions), desc="Evaluating ROUGE scores"):
             rouge_scores = self._compute_rouge_score([pred], [ref])
-            results["rouge"].append(rouge_scores)
+            results["rouge1"].append(rouge_scores["rouge1"])
+            results["rouge2"].append(rouge_scores["rouge2"])
            
         overall_scores= self._compute_rouge_score(predictions,references)
 
-        results["overall_rouge"]["rouge1"] = overall_scores["rouge1"]
-        results["overall_rouge"]["rouge2"] = overall_scores["rouge2"]
-        results["overall_rouge"]["rougeL"] = overall_scores["rougeL"]
+        results["overall_rouge1"] = overall_scores["rouge1"]
+        results["overall_rouge2"] = overall_scores["rouge2"]
 
         return results
 
@@ -53,7 +55,7 @@ class ROUGEEvaluator(BaseEvaluator):
             raise ValueError("The number of predictions must match the number of reference sets.")
 
         try:
-            result = self.rouge_scorer.compute(predictions=predictions, references=references)
+            result = self.rouge_scorer.compute(predictions=predictions, references=references, rouge_types=['rouge1', 'rouge2'])
             return result
         except Exception as e:
             print(f"Error computing ROUGE score: {e}")

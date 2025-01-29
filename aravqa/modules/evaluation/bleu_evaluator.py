@@ -2,9 +2,10 @@ from typing import List,Dict
 from tqdm import tqdm
 from .base import BaseEvaluator
 import evaluate
+# TODO: Use Arabic tokenizer from ...... import ....._tokenize
 
 class BLEUEvaluator(BaseEvaluator):
-    def __init__(self, max_order: int = 2):
+    def __init__(self, max_order: int = 1):
         self.max_order = max_order
         self.bleu_scorer = evaluate.load("bleu")
         super().__init__()
@@ -57,6 +58,7 @@ class BLEUEvaluator(BaseEvaluator):
 
         try:
             result = self.bleu_scorer.compute(predictions=predictions, references=references, max_order=self.max_order)
+            # TODO: Use Arabic tokenizer result = self.bleu_scorer.compute(predictions=predictions, references=references,tokenizer=..._tokenize, max_order=self.max_order)
             return result
         except Exception as e:
             print(f"Error computing BLEU score: {e}")

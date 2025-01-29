@@ -4,8 +4,8 @@ from .base import BaseEvaluator
 import evaluate
 
 class METEOREvaluator(BaseEvaluator):
-    def __init__(self, language: str = "en"):
-        self.meteor_scorer = evaluate.load("meteor", language=language)
+    def __init__(self, language: str = "ar"):
+        self.meteor_scorer = evaluate.load("meteor")
         super().__init__()
         self.language=language
 
@@ -30,7 +30,7 @@ class METEOREvaluator(BaseEvaluator):
             results["meteor"].append(meteor)
         
         overall = self._compute_meteor_score(predictions, references)
-        results["overall_meteor"] = overall["meteor"]
+        results["overall_meteor"] = round(overall["meteor"],2)
 
         return results
 
