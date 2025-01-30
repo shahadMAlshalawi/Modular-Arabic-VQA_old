@@ -19,8 +19,11 @@ setup(
         "torchvision==0.20.1",
         "transformers==4.47.1",
         "evaluate==0.4.3",
+        "bert_score==0.3.12",
+        "rouge_score==0.1.2",
         "datasets==3.2.0",
         "arabert==1.0.1",
+        
        
     ],
     classifiers=[

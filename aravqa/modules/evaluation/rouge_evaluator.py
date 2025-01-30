@@ -55,7 +55,7 @@ class ROUGEEvaluator(BaseEvaluator):
             raise ValueError("The number of predictions must match the number of reference sets.")
 
         try:
-            result = self.rouge_scorer.compute(predictions=predictions, references=references, rouge_types=['rouge1', 'rouge2'])
+            result = self.rouge_scorer.compute(predictions=predictions, references=references, rouge_types=['rouge1', 'rouge2'], use_aggregator=True)
             return result
         except Exception as e:
             print(f"Error computing ROUGE score: {e}")

@@ -30,7 +30,7 @@ class METEOREvaluator(BaseEvaluator):
             results["meteor"].append(meteor)
         
         overall = self._compute_meteor_score(predictions, references)
-        results["overall_meteor"] = round(overall["meteor"],2)
+        results["overall_meteor"] = round(overall["meteor"],3)
 
         return results
 
