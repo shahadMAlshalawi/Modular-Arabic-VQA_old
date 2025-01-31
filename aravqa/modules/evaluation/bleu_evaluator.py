@@ -31,11 +31,11 @@ class BLEUEvaluator(BaseEvaluator):
 
         for pred, ref in tqdm(zip(predictions, references), total=len(predictions), desc="Evaluating BLEU scores"):
             bleu = self._compute_bleu_score([pred],[ref])["bleu"]
-            results["bleu"].append(bleu)
+            results["bleu"].append(round(bleu, 3))
         
         overall= self._compute_bleu_score(predictions,references)
-        results["overall_bleu"] = overall["bleu"]
-        results["overall_precisions_bleu"] = overall["precisions"]
+        results["overall_bleu"] = round(overall["bleu"], 3)
+        results["overall_precisions_bleu"] = round(overall["precisions"], 3)
 
         return results
     
