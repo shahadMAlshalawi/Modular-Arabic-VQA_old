@@ -35,7 +35,7 @@ class BLEUEvaluator(BaseEvaluator):
         
         overall= self._compute_bleu_score(predictions,references)
         results["overall_bleu"] = round(overall["bleu"], 3)
-        results["overall_precisions_bleu"] = round(overall["precisions"], 3)
+        results["overall_precisions_bleu"] = overall["precisions"]
 
         return results
     
