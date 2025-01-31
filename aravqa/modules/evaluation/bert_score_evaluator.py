@@ -34,14 +34,14 @@ class BERTScoreEvaluator(BaseEvaluator):
         
         for pred, ref in tqdm(zip(predictions, references), total=len(predictions), desc="Evaluating BERTScore scores"):
           bertscore = self._compute_bertscore([pred], [ref])
-          results["precision_bertscore"].append(round(bertscore["precision"], 3))
-          results["recall_bertscore"].append(round(bertscore["recall"],3))
-          results["f1_bertscore"].append(round(bertscore["f1"], 3))
+          results["precision_bertscore"].append(round(bertscore["precision"][0], 3))
+          results["recall_bertscore"].append(round(bertscore["recall"][0],3))
+          results["f1_bertscore"].append(round(bertscore["f1"][0], 3))
 
         overall= self._compute_bertscore(predictions,references)
-        results["overall_precision_bertscore"]=round(overall["precision"],3)
-        results["overall_recall_bertscore"]=round(overall["recall"],3)
-        results["overall_f1_bertscore"]= round(overall["f1"],3)
+        results["overall_precision_bertscore"]=round(overall["precision"][0],3)
+        results["overall_recall_bertscore"]=round(overall["recall"][0],3)
+        results["overall_f1_bertscore"]= round(overall["f1"][0],3)
         
         return results
 
