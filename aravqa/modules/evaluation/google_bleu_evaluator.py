@@ -27,7 +27,7 @@ class GoogleBLEUEvaluator(BaseEvaluator):
 
         for pred, ref in tqdm(zip(predictions, references), total=len(predictions), desc="Evaluating Google BLEU scores"):
             google_bleu = self._compute_google_bleu_score([pred], [ref])["google_bleu"]
-            results["google_bleu"].append(round(google_bleu["google_bleu"],3))
+            results["google_bleu"].append(round(google_bleu,3))
         
         overall= self._compute_google_bleu_score(predictions,references)
         results["overall_google_bleu"] = round(overall["google_bleu"],3)
