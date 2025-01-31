@@ -27,10 +27,10 @@ class METEOREvaluator(BaseEvaluator):
 
         for pred, ref in tqdm(zip(predictions, references), total=len(predictions), desc="Evaluating METEOR scores"):
             meteor = self._compute_meteor_score([pred], [ref])
-            results["meteor"].append(round(meteor,3))
+            results["meteor"].append(round(meteor['meteor'],3))
         
         overall = self._compute_meteor_score(predictions, references)
-        results["overall_meteor"] = round(overall,3)
+        results["overall_meteor"] = round(overall['meteor'],3)
 
         return results
 
