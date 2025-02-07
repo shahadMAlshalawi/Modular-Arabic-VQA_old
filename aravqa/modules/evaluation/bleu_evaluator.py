@@ -3,6 +3,14 @@ from tqdm import tqdm
 from .base import BaseEvaluator
 import evaluate
 # TODO: Use Arabic tokenizer from ...... import ....._tokenize
+#from camel_tools.morphology.database import MorphologyDB 
+#from camel_tools.tokenizers.word import simple_word_tokenize
+# TODO: Use NLTK tokenizer
+import nltk
+from nltk.tokenize import word_tokenize
+# TODO: Remove punctuation
+import string
+
 
 class BLEUEvaluator(BaseEvaluator):
     def __init__(self, max_order: int = 1):
@@ -57,6 +65,11 @@ class BLEUEvaluator(BaseEvaluator):
             raise ValueError("The number of predictions must match the number of reference sets.")
 
         try:
+            def remove_punctuation(text: str) -> str:
+                return text.translate(str.maketrans('', '', string.punctuation))
+
+            predictions = [remove_punctuation(pred) for pred in predictions]
+            references = [[remove_punctuation(ref) for ref in refs] for refs in references]
             result = self.bleu_scorer.compute(predictions=predictions, references=references, max_order=self.max_order)
             # TODO: Use Arabic tokenizer result = self.bleu_scorer.compute(predictions=predictions, references=references,tokenizer=..._tokenize, max_order=self.max_order)
             return result
@@ -74,11 +87,3 @@ class BLEUEvaluator(BaseEvaluator):
             path (str): Path to the output file.
         """
         super().export(results, path)
-
-        
-
-    
-
-    
-
-

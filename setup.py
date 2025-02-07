@@ -1,4 +1,14 @@
 from setuptools import setup, find_packages
+from setuptools.command.install import install
+
+
+class CustomInstallCommand(install):
+    def run(self):
+        # standard install process
+        install.run(self)
+
+        import subprocess
+        subprocess.check_call(['python', 'install_data.py'])
 
 setup(
     name="aravqa",
@@ -23,9 +33,12 @@ setup(
         "rouge_score==0.1.2",
         "datasets==3.2.0",
         "arabert==1.0.1",
-        
+        "nltk==3.9.1",
        
     ],
+    cmdclass={
+        'install': CustomInstallCommand,
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
