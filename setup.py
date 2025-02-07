@@ -27,6 +27,7 @@ setup(
         "rouge_score==0.1.2",
         "datasets==3.2.0",
         "arabert==1.0.1",
+        "nltk==3.9.1",
        
     ],
     
