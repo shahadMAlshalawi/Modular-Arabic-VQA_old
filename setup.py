@@ -28,6 +28,7 @@ setup(
         "datasets==3.2.0",
         "arabert==1.0.1",
         "nltk==3.9.1",
+        "openai==1.61.1",
        
     ],
     
