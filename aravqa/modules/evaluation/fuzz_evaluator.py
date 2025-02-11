@@ -39,7 +39,7 @@ class FuzzEvaluator(BaseEvaluator):
 
         evaluated_data = []
         for i, (pred, ref_list, question) in tqdm(enumerate(zip(predictions, references, questions)), total=len(predictions), desc="Evaluating with GPT-4o"):
-          evaluation = self._compute_fuzz_score(question=question, pred=pred, gt_list=ref_list,index=i)
+          evaluation = self._compute_fuzz_score(question=question, pred=pred, gt_list=ref_list,index=i)["evaluation"]
           evaluated_data.append(evaluation)
 
         correct_count = sum(1 for item in evaluated_data if item['evaluation'] == 1)
