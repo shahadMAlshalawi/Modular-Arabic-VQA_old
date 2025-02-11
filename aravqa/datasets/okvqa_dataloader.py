@@ -151,6 +151,7 @@ class OKVQADataLoader:
         
         result = {
             "question_id":[],
+            "question":[],
             "image_id":[],
             "prompts":[],
             "answers":[],
@@ -165,6 +166,7 @@ class OKVQADataLoader:
             })
             
             result["question_id"].append(item["metadata"]["question_id"])
+            result["question"].append(item["question"])
             result["image_id"].append(item["metadata"]["image_id"])
             result["prompts"].append(prompt)
             result["answers"].append(list(map(lambda ans:ans.get("answer",""),item["answers"])))

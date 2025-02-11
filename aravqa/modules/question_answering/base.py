@@ -64,6 +64,7 @@ class BaseQuestionAnswerer(ABC):
         """
         results = {
             "question_id": [],
+            "questions": [],
             "image_id": [],
             "answers": [],
             "predictions": []
@@ -75,6 +76,7 @@ class BaseQuestionAnswerer(ABC):
 
             # Append batch data to results
             results["question_id"].extend(batch["question_id"])
+            results["questions"].extend(batch["question"])
             results["image_id"].extend(batch["image_id"])
             results["answers"].extend(batch["answers"])
             results["predictions"].extend(predictions)
