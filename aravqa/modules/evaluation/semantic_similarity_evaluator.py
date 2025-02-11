@@ -27,16 +27,16 @@ class SemanticSimilarityEvaluator(BaseEvaluator):
         """
 
         results = {
-            "overall_similarity": float('-inf'),
-            "similarities": []
+            "overall_cosine_similarity": float('-inf'),
+            "cosine_similarities": []
         }
 
         for pred, ref_list in tqdm(zip(predictions, references), total=len(predictions), desc="Evaluating Semantic Similarities"):
             similarity = self._compute_similarity_score(pred, ref_list)
-            results["similarities"].append(round(similarity, 3))
+            results["cosine_similarities"].append(round(similarity, 3))
 
         overall_similarities = [self._compute_similarity_score(pred, ref_list) for pred, ref_list in zip(predictions, references)]
-        results["overall_similarity"] = round(np.mean(overall_similarities), 3) # Use mean for overall score
+        results["overall_cosine_similarity"] = round(np.mean(overall_similarities), 3) # Use mean for overall score
 
 
         return results

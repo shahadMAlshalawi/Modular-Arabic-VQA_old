@@ -68,7 +68,7 @@ class FuzzEvaluator(BaseEvaluator):
         """
 
         try:
-            client = OpenAI(api_key=self.openai_api_key) #load client here so that all process has access.
+            client = OpenAI(api_key=self.openai_api_key)
             gt_str = ",".join(gt_list)
 
             messages = [
@@ -151,26 +151,3 @@ class FuzzEvaluator(BaseEvaluator):
             path (str): Path to the output file.
         """
         super().export(results, path)
-'''
-if __name__ == '__main__':
-    #create dummy data
-    predictions = [
-        "The cat is on the mat",
-        "A dog is in the park"
-    ]
-    references = [
-        ["The cat is sitting on the mat", "cat mat", "cat is on the mat"],
-        ["The dog is running in the park","dog is playing in the park", "park dog"]
-    ]
-    questions = ["Where is the cat?","Where is the dog"]
-    # You MUST provide your OpenAI API key here:
-    openai_api_key = "YOUR_OPENAI_API_KEY"
-    #call the evalautor
-    evaluator = FuzzEvaluator(openai_api_key=openai_api_key)
-    results = evaluator.evaluate(predictions, references, questions)
-    print(results)
-
-    export_path = "fuzz_results.json"
-    evaluator.export(results, export_path)
-    print(f"Fuzz results exported to: {export_path}")
-'''
