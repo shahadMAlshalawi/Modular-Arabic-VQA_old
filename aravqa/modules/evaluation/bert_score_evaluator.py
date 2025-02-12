@@ -40,9 +40,9 @@ class BERTScoreEvaluator(BaseEvaluator):
           results["f1_bertscore"].append(round(bertscore["f1"][0], 3))
 
         overall= self._compute_bertscore(predictions,references)
-        results["overall_precision_bertscore"]=round(np.mean(overall["precision"],3))
-        results["overall_recall_bertscore"]=round(np.mean(overall["recall"],3))
-        results["overall_f1_bertscore"]= round(np.mean(overall["f1"],3))
+        results["overall_precision_bertscore"]=round(np.mean(overall["precision"]),3)
+        results["overall_recall_bertscore"]=round(np.mean(overall["recall"]),3)
+        results["overall_f1_bertscore"]= round(np.mean(overall["f1"]),3)
         
         return results
 
