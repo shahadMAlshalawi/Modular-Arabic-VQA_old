@@ -3,6 +3,7 @@ import json
 from .base import BaseEvaluator
 from typing import List, Dict
 from tqdm import tqdm
+import numpy as np
 from pydantic import BaseModel
 from openai import OpenAI
 
@@ -42,12 +43,7 @@ class FuzzEvaluator(BaseEvaluator):
           evaluation = self._compute_fuzz_score(question=question, pred=pred, gt_list=ref_list,index=i)["evaluation"]
           evaluated_data.append(evaluation)
 
-        correct_count = sum(item for item in evaluated_data if item == 1)
-        total_count = len(evaluated_data)
-        accuracy = correct_count / total_count
-
-        results["fuzz_overall_accuracy"] = round(accuracy, 3)
-
+        results["fuzz_overall_accuracy"] = round(np.mean([d["evaluation"] for d in evaluated_data]),3)
         results["fuzz_accuracy"] = evaluated_data
 
 
