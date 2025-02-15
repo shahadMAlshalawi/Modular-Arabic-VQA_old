@@ -43,7 +43,7 @@ class FuzzEvaluator(BaseEvaluator):
           evaluation = self._compute_fuzz_score(question=question, pred=pred, gt_list=ref_list,index=i)["evaluation"]
           evaluated_data.append(evaluation)
 
-        results["fuzz_overall_accuracy"] = round(np.mean([d["evaluation"] for d in evaluated_data]),3)
+        results["fuzz_overall_accuracy"] = round(np.mean(evaluated_data),3)
         results["fuzz_accuracy"] = evaluated_data
 
 
