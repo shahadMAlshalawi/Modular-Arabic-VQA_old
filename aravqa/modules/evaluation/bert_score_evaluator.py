@@ -5,7 +5,7 @@ import evaluate
 import numpy as np
 
 class BERTScoreEvaluator(BaseEvaluator):
-    def __init__(self, lang: str = "ar", model_type: str = "bert-base-multilingual-cased"):
+    def __init__(self, lang: str = "ar", model_type: str = "distilbert-base-multilingual-cased"):
         # TODO: Spacify layer: if model_type: str = "bert-base-multilingual-cased" with num_layers=9
         # TODO: Another model option: model_type: str = "distilbert-base-multilingual-cased" with num_layers=5
         self.bertscore_scorer = evaluate.load("bertscore")
