@@ -100,7 +100,7 @@ class GeminiCaptioner:
         for image in prepared_images:
             prompt_parts = [
                 """
-                You are an AI assistant that generates accurate image captions in Arabic. Describe this image in three short and detailed captions in Arabic, each on a new line and do not use bullet point symbols.
+                You are an AI assistant that generates accurate image captions in Arabic. Describe this image in six short and detailed captions in Arabic, each on a new line and do not use bullet point symbols.
                 """,
                 image
             ]

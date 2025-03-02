@@ -108,7 +108,7 @@ class GPT4oCaptioner:
                     {"role": "system", "content": "You are an AI assistant that generates accurate image captions in Arabic."},
                     {"role": "user", "content": [
                         {"type": "image_url", "image_url": {"url": img_str, "detail": "high"}},
-                        {"type": "text", "text": "Describe this image in three short and detailed captions in Arabic, each on a new line and do not use bullet point symbols"},
+                        {"type": "text", "text": "Describe this image in six short and detailed captions in Arabic, each on a new line and do not use bullet point symbols"},
                     ]}
                 ],
                 max_tokens=self.max_tokens,
