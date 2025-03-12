@@ -160,9 +160,11 @@ class OKVQADataLoader:
 
         for item in batch:
             # Create a prompt using filtered captions
+            #TODO: GPT Captioning
             prompt = self.create_prompt(item["question"], {
                 "bit": item["bit"],
-                "violet": item["violet"]
+                "violet": item["violet"],
+                "GPT4o": item["GPT4o"]
             })
             
             result["question_id"].append(item["metadata"]["question_id"])

@@ -1,9 +1,11 @@
 import torch
 
 class OKVQADataset(torch.utils.data.Dataset):
-    def __init__(self, BDS, VDS):
+    #TODO: GPT Captioning
+    def __init__(self, BDS, VDS, GPT4oDS):
         self.BDS = BDS
         self.VDS = VDS
+        self.GPT4oDS = GPT4oDS
        
 
     def __len__(self):
@@ -16,7 +18,8 @@ class OKVQADataset(torch.utils.data.Dataset):
             "question": self.BDS[idx]["question"],
             "answers": self.BDS[idx].get("answers",[]),
             "bit": self.BDS[idx].get("captions",[]),
-            "violet": self.VDS[idx].get("captions",[])
-            
+            "violet": self.VDS[idx].get("captions",[]),
+            #TODO: GPT Captioning
+            "GPT4o": self.GPT4oDS[idx].get("captions",[])
         }
         return example
