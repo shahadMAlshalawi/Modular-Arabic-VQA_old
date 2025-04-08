@@ -110,6 +110,13 @@ class FuzzEvaluator(BaseEvaluator):
         Predicted Answer: "لا."
         Ground Truth: "لا","نعم","نعم","نعم","لا","لا","نعم","نعم","لا","نعم"
         Score: 1
+        
+        Example 7:
+        Question: "كم عدد ناطحات السحاب التي يمكنك رؤيتها؟"
+        Predicted Answer: "لا يوجد ناطحات سحاب"
+        Ground Truth: "0","1","1","1","2","0","0","2","1","2"
+        Score: 1
+
 
         Now, for each new pair of sentences, analyze their semantic similarity and provide a score of 1 for similar meanings or 0 for different meanings. Always consider the context and potential variations in expressing the same concept.
         Question: "{question}"
