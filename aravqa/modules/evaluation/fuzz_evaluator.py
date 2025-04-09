@@ -74,7 +74,7 @@ class FuzzEvaluator(BaseEvaluator):
                 },
                 {
                     "role": "user",
-                    "content": f"""Here are six examples to guide your evaluation:
+                    "content": f"""Here are ten examples to guide your evaluation:
         Example 1:
         Question: "ما هي اللغة المستخدمة في النص؟"
         Predicted Answer: "العربية"
@@ -94,29 +94,46 @@ class FuzzEvaluator(BaseEvaluator):
         Score: 1
 
         Example 4:
-        Question: "كم عدد الصور التي يمكنك رؤيتها؟"
-        Predicted Answer: "صورة واحدة"
-        Ground Truth: "1","1","4","4","4","1","1","4","1","1"
+        Question: "ما الذي على يمين صحن الحساء؟"
+        Predicted Answer: "ملعقة حساء وعيدان"
+        Ground Truth: ["عيدان تناول الطعام", "عيدان تناول الطعام", "عيدان تناول الطعام", "عيدان تناول الطعام", "عيدان تناول الطعام", "جمبري", "عيدان تناول الطعام", "عيدان تناول الطعام", "عيدان تناول الطعام", "ملعقة، عيدان"]
         Score: 1
 
         Example 5:
-        Question: "ما الذي على يمين صحن الحساء؟"
-        Predicted Answer: "ملعقة حساء وعيدان"
-        Ground Truth: ["عيدان تناول الطعام", "عيدان تناول الطعام", "عيدان تناول الطعام", "عيدان تناول الطعام", "عيدان تناول الطعام", "جمبري", "عيدان تناول الطعام", "عيدان تناول الطعام", "عيدان تناول الطعام", "ملعقة عيدان"]
+        Question: "كم عدد الأشجار في الصورة؟"
+        Predicted Answer: "شجرة واحدة"
+        Ground Truth: "1","1","4","4","4","1","1","4","1","1"
         Score: 1
 
         Example 6:
+        Question: "كم عدد الأشجار في الصورة؟"
+        Predicted Answer: "أربع أشجار"
+        Ground Truth: "1","1","4","4","4","1","1","4","1","1"
+        Score: 1
+
+        Example 7:
+        Question: "كم عدد أعمدة الإنارة التي يمكنك رؤيتها؟"
+        Predicted Answer: "لا يوجد أعمدة إنارة"
+        Ground Truth: "0","1","1","1","2","0","0","2","1","2"
+        Score: 1
+
+        Example 8:
+        Question: "كم عدد الدراجات التي يمكنك رؤيتها؟"
+        Predicted Answer: "ثلاث دراجات"
+        Ground Truth: "0","1","1","1","2","0","0","2","1","2"
+        Score: 0
+
+        Example 9:
         Question: "هل سجل اللاعب هدف؟"
         Predicted Answer: "لا."
         Ground Truth: "لا","نعم","نعم","نعم","لا","لا","نعم","نعم","لا","نعم"
         Score: 1
-        
-        Example 7:
-        Question: "كم عدد ناطحات السحاب التي يمكنك رؤيتها؟"
-        Predicted Answer: "لا يوجد ناطحات سحاب"
-        Ground Truth: "0","1","1","1","2","0","0","2","1","2"
-        Score: 1
 
+        Example 10:
+        Question: "هل سجل اللاعب هدف؟"
+        Predicted Answer: "نعم."
+        Ground Truth: "لا","نعم","نعم","نعم","لا","لا","نعم","نعم","لا","نعم"
+        Score: 1
 
         Now, for each new pair of sentences, analyze their semantic similarity and provide a score of 1 for similar meanings or 0 for different meanings. Always consider the context and potential variations in expressing the same concept.
         Question: "{question}"
