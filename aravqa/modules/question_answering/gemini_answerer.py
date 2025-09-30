@@ -51,7 +51,7 @@ class GeminiAnswerer(BaseQuestionAnswerer):
         
         for index, prompt in enumerate(prompts):
             try:
-                response = self.model.generate_content(prompt)
+                response = self.model.generate_content(prompt, request_options={'timeout': 1200})
                 answers.append(response.text.strip())
             except Exception as e:
                 answers.append(f"Error")
