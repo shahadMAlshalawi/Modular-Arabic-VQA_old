@@ -37,7 +37,7 @@ class OKVQADataLoader:
         """
 
         if num_captions > len(captions):
-            #raise ValueError(f"Number of captions ({num_captions}) exceeds the total number of captions ({len(captions)})")
+            print(f"Number of captions less than required")#raise ValueError(f"Number of captions ({num_captions}) exceeds the total number of captions ({len(captions)})")
         
         if (selection_strategy is None or 
             selection_strategy == CaptionSelection.NONE or 
