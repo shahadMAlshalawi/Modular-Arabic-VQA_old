@@ -52,7 +52,7 @@ class GeminiAnswerer(BaseQuestionAnswerer):
         for index, prompt in enumerate(prompts):
             try:
                 response = self.model.generate_content(prompt, request_options={'timeout': 1200})
-                answers.append(response.text.strip())
+                answers.append(response.candidates[0].content.parts[0].text.strip())
             except Exception as e:
                 answers.append(f"Error")
                 print(f"Error generating answer for prompt {index}: {e}")
