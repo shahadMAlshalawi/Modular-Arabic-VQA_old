@@ -37,6 +37,7 @@ class OKVQADataLoader:
         """
 
         if num_captions > len(captions):
+            # SampleX
             print(f"Number of captions less than required")#raise ValueError(f"Number of captions ({num_captions}) exceeds the total number of captions ({len(captions)})")
         
         if (selection_strategy is None or 
@@ -50,7 +51,10 @@ class OKVQADataLoader:
         elif selection_strategy == CaptionSelection.RANDOM:
             # Randomly select captions
             np.random.seed(self.random_seed)
-            filtered_captions = np.random.choice(captions, num_captions, replace=False).tolist()
+            #SampleX
+            actual_num_captions = min(num_captions, len(captions))
+            filtered_captions = np.random.choice(captions, actual_num_captions, replace=False).tolist()
+            #filtered_captions = np.random.choice(captions, num_captions, replace=False).tolist()
             
         elif selection_strategy == CaptionSelection.HIGH_SIMILARITY_QUESTION:
             # Sort captions by similarity to the question (descending) and select top-N
