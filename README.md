@@ -1,27 +1,41 @@
-# Arabic Visual Question Answering
+# Modular Arabic Visual Question Answering System using Pre-Trained Models
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shahadMAlshalawi/Modular-Arabic-VQA/blob/main/notebooks/gemini_experiments.ipynb)
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shahadMAlshalawi/Modular-Arabic-VQA/blob/main/notebooks/aragpt2_experiments.ipynb)
 
 <p align="center">
-  <img src="assets/images/vqa_architecture.png" alt="VQA Architecture" width="600">
+  <img src="assets/images/System Structure.jpg" alt="VQA Architecture" width="600"><br>
+    <em>Figure 1. Modular Arabic VQA System with Frozen Pretrained models.</em>
 </p>
 
 <p align="center">
-  <img src="assets/images/vqa_inputs_outputs.png" alt="VQA Examples" width="600">
+  <img src="assets/images/prompt.jpg" alt="Prompt Template" width="600"><br>
+    <em>Figure 2. Prompt template employed to generate answers using Gemini-1.5-Flash.</em>
 </p>
 
+<p align="center">
+  <img src="assets/images/Examples_OKVQA-ar.jpg" alt="VQA Examples" width="600"><br>
+    <em>Figure 3. Representative examples comparing the performance of Gemini 1.5 Flash model on Arabic VQA on the OKVQA-ar validation set. Upper part shows its predictions without context captions, and bottom part shows its predictions when introduced with context captions under Modular Arabic VQA system configuration. Right side presents failure cases for both configurations.</em>
+</p>
 
+<p align="center">
+  <img src="assets/images/Examples_VQAv2-ar.jpg" alt="VQA Examples" width="600"><br>
+    <em>Figure 4. Representative examples comparing the performance of Gemini 1.5 Flash model on Arabic VQA on the VQAv2-ar validation set. Upper part shows its predictions without context captions, and bot-tom part shows its predictions when introduced with context captions under Modular Arabic VQA system configuration. Right side presents failure cases for both configurations.</em>
+</p>
 
 ## Overview
 
-**Modular Arabic Visual Question Answering System (aravqa)** is a modular and extensible framework designed for answering open-ended questions about images in Arabic. It combines multiple state-of-the-art pretrained models for image captioning, language processing, and evaluation metrics, offering a seamless pipeline to generate insights and conduct experiments.
+**Modular Arabic Visual Question Answering System (Modular Arabic VQA)** is a **language-mediated framework** for answering open-ended questions about images in **Arabic**.
+Unlike conventional vision–language models that rely on dense visual embeddings, **Modular Arabic VQA** represents images entirely through **textual descriptions**, enabling efficient and interpretable reasoning via large language models (LLMs).
+
+This framework integrates multiple Arabic and multilingual pretrained models for image captioning, and natural-language processing, forming a modular and extensible pipeline for experimentation and research in Arabic VQA field.
 
 ## Key Features:
-- **Modularity:** Plug-and-play architecture for adding and customizing models.
+- **Modularity:** Modular framework allowing easy integration or replacement of captioning, language, and many more components.
+- **Lightweight & Interpretable:** Eliminates multimodal retraining by relying on textual representations, reducing computational cost while maintaining robust reasoning performance.
 - **Arabic Support:** Designed to handle Arabic datasets and language processing tasks.
-- **Flexible Configuration:** Supports various captioning models, caption selection strategies, and evaluation metrics.
-- **Experimentation-Friendly:** Provides a robust pipeline for experiments, including ablation studies and performance evaluation.
+- **Flexible Experimentation:** Supports multiple captioning models (AraBERT32-Flickr8k, Violet, GPT-4o), similarity-based caption-selection strategies, and diverse evaluation metrics (BLEU, BERTScore, Fuzz Accuracy).
+- **Research-Ready Pipeline:** Facilitates ablation studies, benchmarking, and reproducible evaluations of modular VQA configurations..
 
 
 
