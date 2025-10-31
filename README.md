@@ -4,7 +4,7 @@
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shahadMAlshalawi/Modular-Arabic-VQA/blob/main/notebooks/aragpt2_experiments.ipynb)
 
 <p align="center">
-  <img src="assets/images/System Structure.jpg" alt="VQA Architecture" width="600"><br>
+  <img src="assets/images/System_Structure.jpg" alt="VQA Architecture" width="600"><br>
     <em>Figure 1. Modular Arabic VQA System with Frozen Pretrained models.</em>
 </p>
 
