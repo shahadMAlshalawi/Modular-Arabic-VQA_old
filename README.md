@@ -1,7 +1,7 @@
 # Modular Arabic Visual Question Answering System using Pre-Trained Models
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shahadMAlshalawi/Modular-Arabic-VQA/blob/main/notebooks/gemini_experiments.ipynb)
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shahadMAlshalawi/Modular-Arabic-VQA/blob/main/notebooks/aragpt2_experiments.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shahadMAlshalawi/Modular-Arabic-VQA/blob/main/notebooks/OKVQA_ar_gemini_experiments_Final.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shahadMAlshalawi/Modular-Arabic-VQA/blob/main/notebooks/VQAv2_ar_GPT_4o_gemini_experiments_Final.ipynb)
 
 <p align="center">
   <img src="assets/images/System_Structure.jpg" alt="VQA Architecture" width="600"><br>
@@ -23,7 +23,7 @@
     <em>Figure 4. Representative examples comparing the performance of Gemini 1.5 Flash model on Arabic VQA on the VQAv2-ar validation set. Upper part shows its predictions without context captions, and bot-tom part shows its predictions when introduced with context captions under Modular Arabic VQA system configuration. Right side presents failure cases for both configurations.</em>
 </p>
 
-## Overview
+## 🧠 Overview
 
 **Modular Arabic Visual Question Answering System (Modular Arabic VQA)** is a **language-mediated framework** for answering open-ended questions about images in **Arabic**.
 Unlike conventional vision–language models that rely on dense visual embeddings, **Modular Arabic VQA** represents images entirely through **textual descriptions**, enabling efficient and interpretable reasoning via large language models (LLMs).
@@ -31,11 +31,11 @@ Unlike conventional vision–language models that rely on dense visual embedding
 This framework integrates multiple Arabic and multilingual pretrained models for image captioning, and natural-language processing, forming a modular and extensible pipeline for experimentation and research in Arabic VQA field.
 
 ## Key Features:
-- **Modularity:** Modular framework allowing easy integration or replacement of captioning, language, and many more components.
-- **Lightweight & Interpretable:** Eliminates multimodal retraining by relying on textual representations, reducing computational cost while maintaining robust reasoning performance.
-- **Arabic Support:** Designed to handle Arabic datasets and language processing tasks.
-- **Flexible Experimentation:** Supports multiple captioning models (AraBERT32-Flickr8k, Violet, GPT-4o), similarity-based caption-selection strategies, and diverse evaluation metrics (BLEU, BERTScore, Fuzz Accuracy).
-- **Research-Ready Pipeline:** Facilitates ablation studies, benchmarking, and reproducible evaluations of modular VQA configurations..
+-  🧩 **Modularity:** Modular framework allowing easy integration or replacement of captioning, language, and many more components.
+-  💡 **Lightweight & Interpretable:** Eliminates multimodal retraining by relying on textual representations, reducing computational cost while maintaining robust reasoning performance.
+-  🌍 **Arabic Support:** Designed to handle Arabic datasets and language processing tasks.
+-  🔬 **Flexible Experimentation:** Supports multiple captioning models (AraBERT32-Flickr8k, Violet, GPT-4o), similarity-based caption-selection strategies, and diverse evaluation metrics (BLEU, BERTScore, Fuzz Accuracy).
+-  📈 **Research-Ready Pipeline:** Facilitates ablation studies, benchmarking, and reproducible evaluations of modular VQA configurations..
 
 
 
@@ -62,7 +62,7 @@ pip install -e .
 
 ## Architecture
 
-The aravqa framework is structured into multiple reusable modules, allowing customization and extensibility:
+The Modular Arabic VQA framework is structured into multiple reusable modules, allowing customization and extensibility:
 
 - **Core:** Contains shared utilities and configurations.
 
@@ -113,17 +113,20 @@ config.PROMPT_TEMPLATE = textwrap.dedent("""
 # Load datasets
 bds = load_dataset(config.BDS_PATH, split=config.SPLIT)
 vds = load_dataset(config.VDS_PATH, split=config.SPLIT)
+gpt4oDS = load_dataset(config.GPT4oDS_PATH,split=Config.SPLIT)
 
 # Prepare datasets
 BDS = prepare_dataset(bds, language=config.LANGUAGE)
 VDS = prepare_dataset(vds, language=config.LANGUAGE)
+GPT4oDS = prepare_dataset(gpt4oDS, language=config.LANGUAGE)
 
 # Compute similarities for captions
-BDS = compute_similarity_captions(BDS, question_similarity_scorer=compute_bleu_score, answer_similarity_scorer=compute_bleu_score)
-VDS = compute_similarity_captions(VDS, question_similarity_scorer=compute_bleu_score, answer_similarity_scorer=compute_bleu_score)
+BDS = compute_similarity_captions(BDS, question_similarity_scorer=compute_bertscore, answer_similarity_scorer=compute_bertscore)
+VDS = compute_similarity_captions(VDS, question_similarity_scorer=compute_bertscore, answer_similarity_scorer=compute_bertscore)
+GPT4oDS = compute_similarity_captions(GPT4oDS, question_similarity_scorer=compute_bertscore, answer_similarity_scorer=compute_bertscore)
 
 # Combine datasets
-dataset = OKVQADataset(BDS, VDS)
+dataset = OKVQADataset(BDS, VDS, GPT4oDS)
 
 # Initialize DataLoader
 dataloader = OKVQADataLoader(dataset, config).get_dataloader()
@@ -136,15 +139,19 @@ outputs = llm.generate_from_dataloader(dataloader)
 outputs_df = pd.DataFrame.from_dict(outputs)
 
 # Evaluate results
-bleu_evaluator = BLEUEvaluator(max_order=2)
-accuracy_evaluator = AccuracyEvaluator()
+bleu_evaluator = BLEUEvaluator(max_order=4)
+bertScore_evaluator = BERTScoreEvaluator()
+fuzzy_evaluator = FuzzEvaluator(OPENAI_API_KEY)
 
-bleu_results = bleu_evaluator.evaluate(predictions=outputs["predictions"], references=outputs["answers"])
-accuracy_results = accuracy_evaluator.evaluate(predictions=outputs["predictions"], references=outputs["answers"])
+
+bleu_results = bleu_evaluator.evaluate(predictions=outputs["predictions"], references= outputs["answers"])
+bertScore_results = bertScore_evaluator.evaluate(predictions=outputs['predictions'], references= outputs['answers'])
+fuzzy_results = fuzzy_evaluator.evaluate(predictions=outputs['predictions'], references=outputs['answers'], questions=outputs['questions'])
 
 # Display results
 print("BLEU Results:", bleu_results)
-print("Accuracy Results:", accuracy_results)
+print("BertScore Results:", bertScore_results)
+print("Fuzz Accuracy Results:", fuzzy_results)
 
 
 
@@ -153,11 +160,11 @@ print("Accuracy Results:", accuracy_results)
 
 ## Citation
 
-If you use aravqa in your research, please cite the repository:
+If you use Modular Arabic VQA in your research, please cite the repository:
 ```
-@misc{aravqa,
+@misc{Modular Arabic VQA,
   author = {Shahad Alshalawi},
-  title = {Modular Arabic Visual Question Answering System(aravqa)},
+  title = {Modular Arabic Visual Question Answering System},
   year = {2025},
   publisher = {GitHub},
   journal = {GitHub repository},

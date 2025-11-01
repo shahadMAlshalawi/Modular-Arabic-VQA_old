@@ -2,10 +2,6 @@ from typing import List,Dict
 from tqdm import tqdm
 from .base import BaseEvaluator
 import evaluate
-# TODO: Use Arabic tokenizer from ...... import ....._tokenize
-#from camel_tools.morphology.database import MorphologyDB 
-#from camel_tools.tokenizers.word import simple_word_tokenize
-# TODO: Use NLTK tokenizer
 import nltk
 from nltk.tokenize import word_tokenize
 # TODO: Remove punctuation
@@ -13,7 +9,7 @@ import string
 
 
 class BLEUEvaluator(BaseEvaluator):
-    def __init__(self, max_order: int = 1):
+    def __init__(self, max_order: int = 4):
         self.max_order = max_order
         self.bleu_scorer = evaluate.load("bleu")
         super().__init__()

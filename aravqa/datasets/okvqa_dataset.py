@@ -19,7 +19,6 @@ class OKVQADataset(torch.utils.data.Dataset):
             "answers": self.BDS[idx].get("answers",[]),
             "bit": self.BDS[idx].get("captions",[]),
             "violet": self.VDS[idx].get("captions",[]),
-            #TODO: GPT Captioning
             "GPT4o": self.GPT4oDS[idx].get("captions",[])
         }
         return example

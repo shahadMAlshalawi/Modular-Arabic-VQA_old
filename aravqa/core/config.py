@@ -23,10 +23,9 @@ class Config:
 
     # -------------------- Dataset Paths --------------------
     
-    VDS_PATH = "ShahadMAlshalawi/OKVQA-Encoder-Violet-Captions"  # Path for Violet captions
-    BDS_PATH = "ShahadMAlshalawi/OKVQA-VinVL-BiT-Captions"  # Path for BiT captions
-    #TODO: GPT Captioning
-    GPT4oDS_PATH = "ShahadMAlshalawi/OKVQA_GPT-4o_Six_Captions_Checkpoint_0_100"  # Path for GPT4o captions
+    VDS_PATH = "ShahadMAlshalawi/OKVQA-Violet-Captions-with-bert-similarity-Final"  # Path for Violet captions
+    BDS_PATH = "ShahadMAlshalawi/OKVQA-BiT-Captions-with-bert-similarity-Final"  # Path for BiT captions
+    GPT4oDS_PATH = "ShahadMAlshalawi/OKVQA-GPT-4o-Captions-with-bert-similarity-Final"  # Path for GPT4o captions
     SPLIT = "validation"  # Dataset split (e.g., validation, test)
     USERNAME = "ShahadMAlshalawi"  # HF Hugging Face username for loading datasets
 
@@ -42,7 +41,6 @@ class Config:
     NUM_CAPTIONS = -1  # If positive, limits the number of captions per image
     CAPTION_SELECTION = CaptionSelection.NONE  # Default caption selection strategy
     RANDOM_SEED = 42  # Random seed for reproducibility
-    #TODO: GPT Captioning
     CAPTIONS = ["bit", "violet", "GPT4o"]  # Specify which captioning models to include (e.g., BiT and Violet,None)
     CAPTIONS_SEPARATOR = "\n"  # Default separator between captions (e.g., new line)
     PATH_RESULT_FILE = f"./{CAPTION_SELECTION}-{'-'.join(CAPTIONS)}.csv"
