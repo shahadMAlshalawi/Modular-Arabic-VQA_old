@@ -4,22 +4,22 @@
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shahadMAlshalawi/Modular-Arabic-VQA/blob/main/notebooks/VQAv2_ar_GPT_4o_gemini_experiments_Final.ipynb)
 
 <p align="center">
-  <img src="assets/images/System_Structure.jpg" alt="VQA Architecture" width="600"><br>
+  <img src="assets/images/System_Structure.jpg" alt="VQA Architecture" width="400"><br>
     <em>Figure 1. Modular Arabic VQA System with Frozen Pretrained models.</em>
 </p>
 
 <p align="center">
-  <img src="assets/images/prompt.jpg" alt="Prompt Template" width="600"><br>
+  <img src="assets/images/prompt.jpg" alt="Prompt Template" width="800"><br>
     <em>Figure 2. Prompt template employed to generate answers using Gemini-1.5-Flash.</em>
 </p>
 
 <p align="center">
-  <img src="assets/images/Examples_OKVQA-ar.jpg" alt="VQA Examples" width="600"><br>
+  <img src="assets/images/Examples_OKVQA-ar.jpg" alt="VQA Examples" width="800"><br>
     <em>Figure 3. Representative examples comparing the performance of Gemini 1.5 Flash model on Arabic VQA on the OKVQA-ar validation set. Upper part shows its predictions without context captions, and bottom part shows its predictions when introduced with context captions under Modular Arabic VQA system configuration. Right side presents failure cases for both configurations.</em>
 </p>
 
 <p align="center">
-  <img src="assets/images/Examples_VQAv2-ar.jpg" alt="VQA Examples" width="600"><br>
+  <img src="assets/images/Examples_VQAv2-ar.jpg" alt="VQA Examples" width="800"><br>
     <em>Figure 4. Representative examples comparing the performance of Gemini 1.5 Flash model on Arabic VQA on the VQAv2-ar validation set. Upper part shows its predictions without context captions, and bot-tom part shows its predictions when introduced with context captions under Modular Arabic VQA system configuration. Right side presents failure cases for both configurations.</em>
 </p>
 
