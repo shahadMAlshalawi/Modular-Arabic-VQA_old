@@ -1,7 +1,7 @@
 # Modular Arabic Visual Question Answering System using Pre-Trained Models
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shahadMAlshalawi/Modular-Arabic-VQA/blob/main/notebooks/OKVQA_ar_gemini_experiments_Final.ipynb)
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shahadMAlshalawi/Modular-Arabic-VQA/blob/main/notebooks/VQAv2_ar_GPT_4o_gemini_experiments_Final.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/shahadMAlshalawi/Modular-Arabic-VQA/blob/main/notebooks/VQAv2_ar_gemini_experiments_Final.ipynb)
 
 <p align="center">
   <img src="assets/images/System_Structure.jpg" alt="VQA Architecture" width="400"><br>
@@ -34,7 +34,7 @@ This framework integrates multiple Arabic and multilingual pretrained models for
 -  🧩 **Modularity:** Modular framework allowing easy integration or replacement of captioning, language, and many more components.
 -  💡 **Lightweight & Interpretable:** Eliminates multimodal retraining by relying on textual representations, reducing computational cost while maintaining robust reasoning performance.
 -  🌍 **Arabic Support:** Designed to handle Arabic datasets and language processing tasks.
--  🔬 **Flexible Experimentation:** Supports multiple captioning models (AraBERT32-Flickr8k, Violet, GPT-4o), similarity-based caption-selection strategies, and diverse evaluation metrics (BLEU, BERTScore, Fuzz Accuracy).
+-  🔬 **Flexible Experimentation:** Supports multiple captioning models (AraBERT32-Flickr8k, Violet, GPT-4o), similarity-based caption-selection strategies, and diverse evaluation metrics ([BLEU](https://huggingface.co/spaces/evaluate-metric/bleu), [BERTScore](https://arxiv.org/abs/1904.09675), [Fuzz Accuracy](https://github.com/mbzuai-oryx/Camel-Bench/blob/main/scripts/fuzz_eval.py)).
 -  📈 **Research-Ready Pipeline:** Facilitates ablation studies, benchmarking, and reproducible evaluations of modular VQA configurations..
 
 
