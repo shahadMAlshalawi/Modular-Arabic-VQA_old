@@ -9,7 +9,7 @@ import string
 
 
 class BLEUEvaluator(BaseEvaluator):
-    def __init__(self, max_order: int = 4):
+    def __init__(self, max_order: int = 1):
         self.max_order = max_order
         self.bleu_scorer = evaluate.load("bleu")
         super().__init__()
